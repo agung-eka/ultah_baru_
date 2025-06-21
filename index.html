@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&family=Parisienne&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .animate-pulse-glow {
+                animation: pulseGlow 2s ease-in-out infinite;
+            }
+            .flame-animation {
+                animation: flicker 0.5s infinite alternate;
+            }
+            .animate-rotate {
+                animation: rotate 8s linear infinite;
+            }
+            .animate-bounce-slow {
+                animation: bounceSlow 3s ease-in-out infinite;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(-1deg); }
+                50% { transform: translateY(-20px) rotate(1deg); }
+            }
+            @keyframes pulseGlow {
+                0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+                50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(255,255,255,0.7)); }
+                100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+            }
+            @keyframes flicker {
+                0% { transform: scale(1); opacity: 1; filter: blur(0.5px); }
+                100% { transform: scale(1.2); opacity: 0.8; filter: blur(1px); }
+            }
+            @keyframes rotate {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            @keyframes bounceSlow {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-15px); }
+            }
+            @keyframes confettiFall {
+                0% { 
+                    transform: translateY(-100px) rotate(0deg); 
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translateY(100vh) rotate(360deg); 
+                    opacity: 0;
+                }
+            }
+            .glass-effect {
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            .text-stroke {
+                -webkit-text-stroke: 1px white;
+                text-stroke: 1px white;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden relative bg-gradient-to-br from-purple-900 via-pink-800 to-red-900">
+    <!-- Background Slideshow -->
+    <div class="fixed inset-0 z-0 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30 z-10"></div>
+        <img src="/img/gambar1.jpg" 
+             alt="Birthday background" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+        <img src="/img/IMG_20250425_162756_135.jpg" 
+             alt="Romantic background" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="/img/IMG_20250411_194843_519.jpg" 
+             alt="Love background" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="/img/1750421169285.jpg" 
+             alt="Celebration background" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="/img/1750421180634.jpg" 
+             alt="Party background" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="fixed inset-0 z-1 overflow-hidden pointer-events-none">
+        <!-- Floating hearts -->
+        <div class="absolute top-1/4 left-1/4 text-pink-400/80 animate-float" style="animation-delay: 0s;">
+            <i class="fas fa-heart text-5xl"></i>
+        </div>
+        <div class="absolute top-1/3 right-1/4 text-red-400/80 animate-float" style="animation-delay: 1s;">
+            <i class="fas fa-heart text-4xl"></i>
+        </div>
+        <div class="absolute top-1/5 right-1/3 text-rose-400/80 animate-float" style="animation-delay: 2s;">
+            <i class="fas fa-heart text-6xl"></i>
+        </div>
+        
+        <!-- Floating stars -->
+        <div class="absolute top-1/6 left-1/6 text-yellow-300/60 animate-rotate" style="animation-delay: 0.5s;">
+            <i class="fas fa-star text-3xl"></i>
+        </div>
+        <div class="absolute bottom-1/4 right-1/5 text-yellow-200/70 animate-rotate" style="animation-delay: 1.5s;">
+            <i class="fas fa-star text-2xl"></i>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container" class="fixed inset-0 z-10 overflow-hidden pointer-events-none"></div>
+
+    <!-- Main Content -->
+    <div class="relative z-20 min-h-screen flex flex-col items-center justify-center px-4 py-16">
+        <div class="glass-effect rounded-3xl p-8 md:p-12 shadow-2xl max-w-4xl w-full mx-4 animate-pulse-glow">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 text-gradient bg-gradient-to-r from-pink-400 via-red-400 to-yellow-300 font-[Parisienne]">
+                    Happy Birthday
+                </h1>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 text-white font-[Tangerine]">
+                    <span class="name text-gradient bg-gradient-to-r from-yellow-300 via-pink-400 to-red-400">My Love</span>!
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-pink-400/50 via-red-400/50 to-yellow-400/50 mx-auto mb-8 rounded-full"></div>
+                <p class="text-2xl md:text-3xl text-white/90 font-light font-[Montserrat] italic">
+                    Today we celebrate you, the most amazing person in my life!
+                </p>
+            </div>
+
+            <!-- Animated Photo Frame -->
+            <div class="flex justify-center mb-12 relative">
+                <div class="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <!-- Replace with your actual photo -->
+                    <img src="/img/gambar1.jpg" 
+                         alt="Birthday Person" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-white font-[Montserrat]">
+                        <p class="text-xl font-medium">The Most Beautiful Person</p>
+                    </div>
+                </div>
+                
+                <!-- Floating decorations around photo -->
+                <div class="absolute -top-6 -left-6 text-pink-400/70 text-4xl animate-bounce-slow">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="absolute -bottom-6 -right-6 text-yellow-300/70 text-4xl animate-bounce-slow" style="animation-delay: 0.5s;">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <!-- Message -->
+            <div class="text-center mb-12">
+                <p class="text-xl md:text-2xl text-white/90 mb-8 font-[Montserrat] leading-relaxed italic">
+                    "Happy Birthday to the one who means so much to me.<br>
+                    Your calm presence, your thoughtfulness — they make every day better.<br>
+                    May this year bring you closer to your dreams and fill your days with real happiness."
+                </p>
+                
+                <button id="surpriseBtn" class="px-10 py-5 bg-gradient-to-r from-pink-500 to-yellow-500 text-white text-xl font-bold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 group relative overflow-hidden">
+                    <span class="relative z-10 flex items-center justify-center gap-3">
+                        <i class="fas fa-gift text-2xl group-hover:animate-bounce-slow"></i> 
+                        <span>Click for Special Surprise!</span>
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="fixed bottom-8 right-8 glass-effect rounded-2xl p-5 shadow-xl z-30 transition-all duration-300 hover:scale-105 group">
+        <div class="flex items-center gap-5">
+            <div class="text-white min-w-[180px]">
+                <div id="songInfo" class="font-medium text-lg truncate">Birthday Celebration Mix</div>
+                <div class="w-full h-1.5 bg-white/20 rounded-full mt-2 overflow-hidden">
+                    <div id="progressBar" class="h-full bg-gradient-to-r from-pink-400 to-yellow-400 rounded-full" style="width: 0%"></div>
+                </div>
+                <div id="songArtist" class="text-sm text-white/70 mt-1">Various Artists</div>
+            </div>
+            <button id="playPauseBtn" class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-500 to-yellow-500 flex items-center justify-center text-white hover:from-pink-600 hover:to-yellow-600 transition-all shadow-lg">
+                <i class="fas fa-play text-xl"></i>
+            </button>
+        </div>
+        <audio id="bgMusic">
+            <!-- Replace with actual music files -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Background Slideshow
+        const bgImages = document.querySelectorAll('.fixed.inset-0.z-0 img');
+        let currentBgIndex = 0;
+        
+        function changeBackground() {
+            bgImages[currentBgIndex].classList.remove('opacity-100');
+            bgImages[currentBgIndex].classList.add('opacity-0');
+            
+            currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+            
+            bgImages[currentBgIndex].classList.remove('opacity-0');
+            bgImages[currentBgIndex].classList.add('opacity-100');
+        }
+        
+        setInterval(changeBackground, 5000);
+        
+        // Music Player
+        const bgMusic = document.getElementById('bgMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressBar = document.getElementById('progressBar');
+        const songInfo = document.getElementById('songInfo');
+        const songArtist = document.getElementById('songArtist');
+        
+        const songs = [
+            { 
+                title: "Perfect - Ed Sheeran", 
+                artist: "Ed Sheeran",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3" 
+            },
+            { 
+                title: "A Thousand Years - Christina Perri", 
+                artist: "Christina Perri",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" 
+            },
+            { 
+                title: "All of Me - John Legend", 
+                artist: "John Legend",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3" 
+            },
+            { 
+                title: "Can't Help Falling In Love - Elvis Presley", 
+                artist: "Elvis Presley",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3" 
+            },
+            { 
+                title: "You Are The Reason - Calum Scott", 
+                artist: "Calum Scott",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3" 
+            }
+        ];
+        
+        let currentSongIndex = 0;
+        
+        function loadSong(index) {
+            bgMusic.src = songs[index].url;
+            songInfo.textContent = songs[index].title;
+            songArtist.textContent = songs[index].artist;
+            bgMusic.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause text-xl"></i>';
+        }
+        
+        function updateProgress() {
+            const { duration, currentTime } = bgMusic;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+        
+        playPauseBtn.addEventListener('click', () => {
+            const isPlaying = !bgMusic.paused;
+            if (isPlaying) {
+                bgMusic.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play text-xl"></i>';
+            } else {
+                bgMusic.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause text-xl"></i>';
+            }
+        });
+        
+        bgMusic.addEventListener('timeupdate', updateProgress);
+        bgMusic.addEventListener('ended', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+        });
+        
+        // Load first song
+        loadSong(currentSongIndex);
+        
+        // Confetti Effect
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const confettiContainer = document.getElementById('confetti-container');
+        
+        surpriseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            createConfetti();
+            
+            // Play celebration sound
+            const sound = new Audio('https://www.soundjay.com/human/sounds/applause-08.mp3');
+            sound.play();
+            
+            // Special animation
+            const photo = document.querySelector('.relative.w-72.h-72');
+            photo.classList.add('animate-pulse-glow');
+            setTimeout(() => {
+                photo.classList.remove('animate-pulse-glow');
+            }, 2000);
+        });
+        
+        function createConfetti() {
+            const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#a78bfa', '#f472b6'];
+            const shapes = ['❤️', '🎉', '🎊', '✨', '🎁', '🥳', '🌟'];
+            
+            for (let i = 0; i < 300; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'absolute text-2xl';
+                
+                // Randomly choose between emoji or colored div
+                if (Math.random() > 0.5) {
+                    confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                } else {
+                    confetti.className += ' w-4 h-4 rounded-full';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                }
+                
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                
+                confettiContainer.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Auto-play music after user interaction
+        document.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play()
+                    .then(() => {
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause text-xl"></i>';
+                    })
+                    .catch(error => {
+                        console.log('Auto-play prevented:', error);
+                    });
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
